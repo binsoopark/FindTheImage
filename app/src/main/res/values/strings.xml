@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FindTheImage</string>
+    <string name="title_find">Find</string>
+    <string name="title_settings">Settings</string>
+    <!--<string name="title_notifications">Notifications</string>-->
+</resources>
