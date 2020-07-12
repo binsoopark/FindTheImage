@@ -13,7 +13,7 @@ val baseNetworkKoinModule =
     module {
         single {
             Retrofit.Builder()
-                .baseUrl("https://pixabay.com/api/") //https://pixabay.com/api/?key=17434116-8fedc09ffd818b7d332eb8d20&q=열매
+                .baseUrl("https://pixabay.com") //https://pixabay.com/api/?key=17434116-8fedc09ffd818b7d332eb8d20&q=열매
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(get())
                 .build()
