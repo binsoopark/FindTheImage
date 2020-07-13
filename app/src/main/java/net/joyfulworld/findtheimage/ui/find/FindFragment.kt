@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.annotation.LayoutRes
 import net.joyfulworld.findtheimage.R
+import net.joyfulworld.findtheimage.databinding.FragmentFindBinding
+import net.joyfulworld.findtheimage.ui.BindingFragment
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class FindFragment : Fragment() {
+class FindFragment : BindingFragment<FragmentFindBinding>() {
+
+    @LayoutRes
+    override fun getLayoutResId() = R.layout.fragment_find
 
     private lateinit var findViewModel: FindViewModel
 
@@ -19,13 +22,11 @@ class FindFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        findViewModel =
-                ViewModelProviders.of(this).get(FindViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_find, container, false)
-        val textView: TextView = root.findViewById(R.id.tv_find_label_keyword)
-//        findViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
-        return root
+        binding.vm = getViewModel()
+        binding.lifecycleOwner = this
+
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
+
+
 }
