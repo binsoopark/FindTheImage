@@ -15,8 +15,6 @@ class FindFragment : BindingFragment<FragmentFindBinding>() {
     @LayoutRes
     override fun getLayoutResId() = R.layout.fragment_find
 
-    private lateinit var findViewModel: FindViewModel
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

@@ -53,4 +53,8 @@ class FindViewModel(private val api: PixabaySearchAPI) : ViewModel() {
     fun onQueryChange(query: CharSequence) {
         this.query = query.toString()
     }
+
+    fun showBigImage(item: HitImage) {
+        addToDisposable()
+    }
 }

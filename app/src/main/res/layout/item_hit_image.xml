@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="item"
+            type="net.joyfulworld.base.data.remote.domain.HitImage" />
+        <variable
+            name="vm"
+            type="net.joyfulworld.findtheimage.ui.find.FindViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_home_black_24dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{() -> vm != null ? vm.showBigImage(item) : void}"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
