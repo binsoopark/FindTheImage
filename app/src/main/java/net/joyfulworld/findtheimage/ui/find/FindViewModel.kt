@@ -2,12 +2,16 @@ package net.joyfulworld.findtheimage.ui.find
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import net.joyfulworld.base.data.remote.api.PixabaySearchAPI
 import net.joyfulworld.base.data.remote.domain.HitImage
 import net.joyfulworld.base.extension.with
 import net.joyfulworld.findtheimage.util.NotNullMutableLiveData
+import java.lang.Exception
 
 class FindViewModel(private val api: PixabaySearchAPI) : ViewModel() {
 
@@ -55,6 +59,12 @@ class FindViewModel(private val api: PixabaySearchAPI) : ViewModel() {
     }
 
     fun showBigImage(item: HitImage) {
-        addToDisposable()
+        val disposable = Observable.create((ObservableOnSubscribe<HitImage> { e->
+            e.onNext(item)
+            e.onError(Throwable("error: observable create error"))
+        })).doOnSubscribe { _refreshing.value = true }
+            .doOnError { _refreshing.value = false }
+            .subscribe()
+        addToDisposable(disposable)
     }
 }
